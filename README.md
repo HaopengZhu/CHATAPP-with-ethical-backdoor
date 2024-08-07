@@ -81,8 +81,7 @@ Include the keyword "alert" in any message content.
 Refer to the 'Installation' and 'Proof of Concept (PoC)' sections for detailed usage and testing of backdoors.
 
 ## License
-
-This project is licensed under the MIT License - see the LICENSE file for details.
+This project is licensed under the [MIT License](https://opensource.org/licenses/MIT). 
 
 ## Contact
 
