@@ -1,4 +1,4 @@
-# Secure Chat Application with Educational Backdoors
+# CHATAPP with Educational Backdoors
 
 ## Overview
 
