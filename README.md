@@ -2,7 +2,7 @@
 
 ## Overview
 
-This repository contains a Python-based secure chat application designed to demonstrate various security concepts, including the implementation and identification of backdoors within a system. The application uses WebSockets for real-time communication and includes deliberate backdoors for educational purposes.
+Hi everyone, Here is group 13 with our group members: Haopeng Zhu(a1901635) and Zeyu Liu(a1903617). This is the chat application with some ethical backdoors. This repository contains a Python-based secure chat application designed to demonstrate various security concepts, including the implementation and identification of backdoors within a system. The application uses WebSockets for real-time communication and includes deliberate backdoors for educational purposes.
 
 ## Disclaimer
 
