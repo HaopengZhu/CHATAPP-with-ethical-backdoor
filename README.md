@@ -1,4 +1,4 @@
-# CHATAPP with Educational Backdoors
+# CHATAPP with Ethical Backdoors
 
 ## Overview
 
