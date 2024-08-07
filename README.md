@@ -1,97 +1,90 @@
-# Overview
+# Secure Chat Application with Educational Backdoors
 
-Hi everyone, Here is group 13 with our group members: Haopeng Zhu(a1901635) and Zeyu Liu(a1903617). This project provides a secure and real-time chat application that supports both public and private messaging. It is built using Python with the websockets library, incorporating advanced security features and encryption for data protection. chat_server.py is the backdoor-free server code, and chat_server1.py is the server code containing the ethical backdoor.
+## Overview
+
+This repository contains a Python-based secure chat application designed to demonstrate various security concepts, including the implementation and identification of backdoors within a system. The application uses WebSockets for real-time communication and includes deliberate backdoors for educational purposes.
+
+## Disclaimer
+
+**This code includes intentional vulnerabilities (backdoors) meant solely for educational purposes. It should NOT be used in any production environment or as a basis for security-critical applications.**
 
 ## Table of Contents
-- **Features**
-- **Technologies Used**
-- **Prerequisites**
-- **Installation**
-- **Usage**
-- **Configuration**
-- **Security and Encryption**
-- **License**
-- **Contact**
 
+- Overview
+- Disclaimer
+- Features
+- Backdoors
+  - Admin Mode Backdoor
+  - Command Execution Backdoor
+  - Message Interception Backdoor
+- Proof of Concept (PoC)
+- Installation
+- Usage
+- License
+- Contact
 
 ## Features
-Real-time messaging: Users can send and receive messages instantly.
-Encryption: Secure client-to-client communication using RSA encryption.
-File Transfer: Point-to-point encrypted file sharing.
-Presence Updates: Real-time updates on user availability.
-Rate Limiting: To prevent abuse and ensure service quality.
 
-## Technologies Used
-1. Python 3.8+
-2. WebSockets
-3. RSA cryptography
-4. JSON
-5. Git
+- **Real-time messaging** using WebSockets.
+- **RSA encryption** for secure message and file transfer.
+- **User presence updates**.
 
-## Prerequisites
-Python 3.8 or later
-websockets and cryptography libraries
-A modern web browser
+## Backdoors
+
+### 1. Admin Mode Backdoor
+
+**Description:**
+The server can enable 'Admin Mode' for any client based on a specific configuration passed during the client registration phase. This mode gives elevated privileges to the client.
+
+**Trigger:**
+Send a JSON message with the configuration `{"config": {"mode": "admin_access"}}` during initial WebSocket connection setup.
+
+**PoC:**
+1. Connect to the server using a WebSocket client.
+2. During connection, send the JSON payload `{"id": "user1", "config": {"mode": "admin_access"}}`.
+3. The server logs will indicate that admin mode has been enabled.
+
+### 2. Command Execution Backdoor
+
+**Description:**
+The server executes administrative commands from clients that start with the prefix "cmd:". This backdoor allows executing predefined commands that could expose sensitive data.
+
+**Trigger:**
+Send a message with the prefix "cmd:" followed by the command name.
+
+**PoC:**
+1. Connect to the server and authenticate.
+2. Send the command `{"info": "cmd:fetch", "from": "admin_user"}`.
+3. Server responds with sensitive data from the file `data/admin_data.txt`.
+
+### 3. Message Interception Backdoor
+
+**Description:**
+The server can modify or log messages based on certain triggers within the message content, allowing for interception and monitoring of communication.
+
+**Trigger:**
+Include the keyword "alert" in any message content.
+
+**PoC:**
+1. Send a message with the content `{"info": "Hello everyone! alert", "from": "user1"}`.
+2. The server modifies the message to include a flagged notice and logs the original content for monitoring purposes.
 
 ## Installation
-To set up the chat system on your local machine:
 
-Clone the repository: git clone URL_TO_REPOSITORY
-Navigate to the project directory: cd path_to_project
-Install required Python packages: pip install websockets cryptography
-Start the server: python chat_server.py
-Open the client script in your browser or run: python chat_client.py
+1. Clone this repository.
+2. Install dependencies: `pip install websockets cryptography`.
+3. Start the server: `python chat_server.py`.
+4. Connect using any WebSocket client.
 
 ## Usage
 
-1. Starting the Application
-**Server**: Run python chat_server.py to start the server.
-**Client**: Execute python chat_client.py to launch the client interface.
-
-2. Logging In
-Open the client application.
-Enter your desired username to connect to the chat server.
-
-3. Sending Messages
-Private Message: Select a user from the active user list to initiate a private conversation. Messages are encrypted using RSA encryption.
-Public Message: Type your message in the chat input field and press send. It will be visible to all connected users.
-
-4. File Transfer
-Choose a file under the size limit of 10KB.
-Send directly to another user, ensuring that the file is encrypted before transmission.
-
-## Configuration
-
-**Server**
-The server is set up to listen on `0.0.0.0` at port `5555`.
-Modify chat_server.py to change settings.
-
-**Client**
-Clients connect to the server using the specified server IP address and port `5555`.
-Client configuration can be adjusted in chat_client.py.
-
-## Encryption
-**RSA Encryption**
-Implement RSA encryption to securely transmit messages and files between clients.
-Keys are generated dynamically upon client and server start.
-
-**Secure WebSocket (WSS)**
-The application uses WSS to ensure that all communications between the client and server are encrypted.
-
-**Authentication**
-Simple username entry point; consider integrating more robust authentication methods for enhanced security.
-
-**Input Validation**
-Inputs from users are validated and sanitized to prevent injection attacks and ensure secure communication.
-
-**Rate Limiting**
-Implement rate limiting to prevent denial-of-service attacks and manage the load on the server effectively
+Refer to the 'Installation' and 'Proof of Concept (PoC)' sections for detailed usage and testing of backdoors.
 
 ## License
-This project is licensed under the [MIT License](https://opensource.org/licenses/MIT). 
 
-**Contact**
-Group 13
-For more information or to report issues, please contact: a1901635@adelaide.edu.au
+This project is licensed under the MIT License - see the LICENSE file for details.
 
-GitHublink: https://github.com/HaopengZhu/CHATAPP.git
+## Contact
+
+For educational feedback or inquiries, please contact [Your Email or GitHub Profile].
+
